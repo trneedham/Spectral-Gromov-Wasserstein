@@ -4,7 +4,7 @@
 
 # Generalized Spectral Clustering via Gromov-Wasserstein Learning
 
-This repository is the official implementation of _Generalized Spectral Clustering via Gromov-Wasserstein Learning_.
+This repository is the official implementation of _Generalized Spectral Clustering via Gromov-Wasserstein Learning_ by Samir Chowdhury and Tom Needham (Arxiv link forthcoming).
 
 
 ## Requirements
