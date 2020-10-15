@@ -95,6 +95,7 @@ plt.subplot(1,2,2)
 nx.draw_networkx(graph2, layout = nx.kamada_kawai_layout(graph2),node_color='xkcd:light blue')
 
 plt.suptitle('Graphs from Enzyme dataset')
+plt.savefig('res_hkscaleCouplings_graphs.png',bbox_inches='tight',dpi=150)  
 
 # Plot couplings
 ts = np.linspace(0,50,100)
@@ -124,6 +125,7 @@ for i in range(len(coups)):
 fig.tight_layout()
 # fig.dpi = 50
 fig.suptitle('Couplings across scale parameters')
+fig.savefig('res_hkscaleCouplings_couplings_all.png',bbox_inches='tight',dpi=300)  
 
 # Set things up for tSNE
 X = [np.ravel(v) for v in coups]
@@ -156,6 +158,7 @@ for idx,val in enumerate(zip(X_[:,0],X_[:,1])):
 # fig.savefig('200927_hkscale_tsne_labeled.png',bbox_inches='tight',dpi=150)
 fig.dpi = 100
 fig.suptitle('tSNE embedding of couplings | Labels indicate coupling indices ')
+fig.savefig('res_hkscaleCouplings_tsne.png',bbox_inches='tight',dpi=150)  
 
 print('---Still computing...---\n')
 
@@ -172,6 +175,7 @@ for i in range(len(coups)):
 fig.tight_layout()
 # fig.savefig('200927_hkscale_tsne_couplings.png',bbox_inches='tight',dpi=300)
 fig.dpi = 50
+fig.savefig('res_hkscaleCouplings_couplings_select.png',bbox_inches='tight',dpi=150) 
 
 # Set things up for geodesic visualization
 
@@ -192,6 +196,7 @@ graph2_hk = sgw.undirected_normalized_heat_kernel(graph2,t)
 fig = draw_geodesic_with_node_weights_fixed_coupling_v2(graph1_hk,graph2_hk,p1,p2,nodePos_matrix1,nodePos_matrix2,coup)
 # fig.savefig('200927_hkscale_3_geodesic.png',bbox_inches='tight',dpi=300)
 fig.dpi = 50
+fig.savefig('res_hkscaleCouplings_geodesic_3.png',bbox_inches='tight',dpi=150) 
 
 print('---Still computing...---\n')
 
@@ -205,6 +210,7 @@ graph2_hk = sgw.undirected_normalized_heat_kernel(graph2,t)
 fig = draw_geodesic_with_node_weights_fixed_coupling_v2(graph1_hk,graph2_hk,p1,p2,nodePos_matrix1,nodePos_matrix2,coup)
 # fig.savefig('200927_hkscale_19_geodesic.png',bbox_inches='tight',dpi=300)
 fig.dpi = 50
+fig.savefig('res_hkscaleCouplings_geodesic_19.png',bbox_inches='tight',dpi=150)
 
 print('---Still computing...---\n')
 
@@ -219,6 +225,7 @@ fig = draw_geodesic_with_node_weights_fixed_coupling_v2(graph1_hk,graph2_hk,p1,p
 fig.tight_layout()
 # fig.savefig('200927_hkscale_39_geodesic.png',bbox_inches='tight',dpi=300)
 fig.dpi = 50
+fig.savefig('res_hkscaleCouplings_geodesic_39.png',bbox_inches='tight',dpi=150)
 
 print('---Done! Rendering ---\n')
 
