@@ -11,7 +11,7 @@ python3 benchmark_regularized_wikicats.py
 python3 plot_gwa_village.py
 python3 plot_energy.py
 python3 plot_node_correctness.py
-python3 supervisedPartitionExperiment.py
 python3 randomGraphPartitioning.py
-python3 sbmAmiModularity.py
+python3 supervisedPartitionExperiment.py
 python3 hkscaleCouplings.py
+python3 sbmAmiModularity.py

@@ -137,7 +137,7 @@ for i in range(len(As)):
 fig.suptitle('SBMs with increasing cross-block edge densities')
 fig.tight_layout()
 
-# fig.savefig('200927_partition_sbm_two.png',bbox_inches='tight',dpi=150)
+fig.savefig('res_sbmAmiModularity_blocks.png',bbox_inches='tight',dpi=150)
 
 melted = pd.melt(sbm_df,['off-diag-p','t','iteration'])
 
@@ -158,4 +158,6 @@ axes = f.axes.flatten()
 for i,val in enumerate(cn):
     axes[i].set_title("cross-block edge density = %2.2f" % cn[i])
     
+
+fg.savefig('res_sbmAmiModularity.png',bbox_inches='tight',dpi=300)    
 plt.show()

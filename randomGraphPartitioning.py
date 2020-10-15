@@ -288,3 +288,43 @@ print('Average times:')
 print('p_out','specGW','GWL','Infomap')
 for j in range(len(ps_out)):
     print(ps_out[j],np.round(specGW_avg_times,2)[j],np.round(GWL_avg_times,2)[j],np.round(infoMap_avg_times,2)[j])
+
+## Store results
+ami_p_out = []
+ami_specGW = []
+ami_GWL = []
+ami_Infomap = []
+
+times_p_out = []
+times_specGW = []
+times_GWL = []
+times_Infomap = []
+
+for j in range(len(ps_out)):
+    ami_p_out.append(ps_out[j])
+    ami_specGW.append(np.round(specGW_avg_amis,3)[j])
+    ami_GWL.append(np.round(GWL_avg_amis,3)[j])
+    ami_Infomap.append(np.round(infoMap_avg_amis,3)[j])
+    
+    times_p_out.append(ps_out[j])
+    times_specGW.append(np.round(specGW_avg_times,2)[j])
+    times_GWL.append(np.round(GWL_avg_times,2)[j])
+    times_Infomap.append(np.round(infoMap_avg_times,2)[j])
+    
+res_ami = {}#pd.DataFrame()
+res_ami['p_out'] = ami_p_out
+res_ami['specGW'] = ami_specGW
+res_ami['GWL'] = ami_GWL
+res_ami['Infomap'] = ami_Infomap
+
+res_times = {}#pd.DataFrame()
+res_times['p_out'] = times_p_out
+res_times['specGW'] = times_specGW
+res_times['GWL'] = times_GWL
+res_times['Infomap'] = times_Infomap
+
+with open('res_randomGraphPartitioning.txt', 'w') as outfile:
+    json.dump(['Average AMIs',
+               res_ami,
+               'Average times',
+               res_times], outfile,indent=0)

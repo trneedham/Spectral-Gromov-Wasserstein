@@ -241,8 +241,9 @@ for i in range(len(As)):
     
 fig.tight_layout()
 
-# fig.savefig('201012_partition_sbm_five.png',bbox_inches='tight',dpi=150)
+
 fig.suptitle('SBMs for supervised learning with leave-one-out cross-validation')
+fig.savefig('res_supervisedPartitionExperiment.png',bbox_inches='tight',dpi=150)
 
 
 ## LOOCV step
@@ -297,4 +298,7 @@ print(sbm_df)
 
 print(sbm_df.mean())
 
+with open('res_supervisedPartitionExperiment.txt', 'w') as outfile:
+    sbm_df.round(4).to_csv(outfile,index=True,sep="\t")
+    
 plt.show()
