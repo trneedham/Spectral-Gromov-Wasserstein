@@ -4,7 +4,7 @@
 
 # Generalized Spectral Clustering via Gromov-Wasserstein Learning
 
-This repository is the official implementation of _Generalized Spectral Clustering via Gromov-Wasserstein Learning_ by Samir Chowdhury and Tom Needham. A preprint is available [here](https://arxiv.org/abs/2006.04163).
+This repository implements _Generalized Spectral Clustering via Gromov-Wasserstein Learning_ (AISTATS 2021).
 
 
 ## Requirements
@@ -37,10 +37,14 @@ It may take several hours to generate all the results files. These will be store
 | Script    | Table or Figure |
 |---|---|
 | plot_matchings.py | Figure 1 |
-| benchmark*.py  | Tables 3-5 |
+| plot_energy.py | Table 1, Figure 3 |
 | plot_node_correctness.py | Table 2 |
-| plot_energy.py | Figure 2 |
-| plot_gwa_village.py | Figure 3 |
+| sbmAmiModularity.py | Figure 2 |
+| randomGraphPartitioning.py  | Table 3 |
+| partition*.py  | Tables 4-6 |
+| supervisedPartitionExperiment.py | Figure 5 |
+| hkscaleCouplings.py | Figures 6-7 |
+| plot_gwa_village.py | Figure 8 |
 
 
 

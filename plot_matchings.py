@@ -201,7 +201,30 @@ start = time.time()
 Markov_steps = coupling_ensemble(A,b,p1,p2,num_steps,num_skips)
 end = time.time()
 
-t = 2
+A1 = nx.to_numpy_array(G1)
+A2 = nx.to_numpy_array(G2)
+
+# Find Optimal Couplings
+opt_coups = []
+losses = []
+
+start = time.time()
+
+for j in range(num_steps):
+    G0 = Markov_steps[j]
+    coup, log = gromov_wasserstein_asym_fixed_initialization(A1, A2, p1, p2, G0)
+    losses.append(log['gw_dist'])
+    opt_coups.append(coup)
+    
+end = time.time()
+
+print('Compute Time for graphs of size',len(p1),'and',len(p2),':',end-start,'seconds')
+fig = draw_geodesic_with_node_weights_fixed_coupling(nx.to_numpy_array(G1),nx.to_numpy_array(G2),
+                                               p1,p2,nodePos_matrix1,nodePos_matrix2,opt_coups[np.argmin(losses)])
+
+fig.suptitle('Cycle to circulant-adj',fontsize=12)
+fig.savefig('res_cycle_circulant-adj.pdf',bbox_inches='tight')
+t = 20
 
 nodePos_matrix1, ppp1, lam1, phi1 = extract_HK_data_normalized_Laplacian(G1)
 nodePos_matrix2, ppp2, lam2, phi2 = extract_HK_data_normalized_Laplacian(G2)
@@ -224,33 +247,8 @@ for j in range(num_steps):
 end = time.time()
 fig = draw_geodesic_with_node_weights_fixed_coupling(nx.to_numpy_array(G1),nx.to_numpy_array(G2),
                                                p1,p2,nodePos_matrix1,nodePos_matrix2,opt_coups[np.argmin(losses)])
-fig.suptitle('Cycle to circulant-HK2',fontsize=12)
-fig.savefig('res_cycle_circulant-HK2.pdf',bbox_inches='tight')
-t = 10
-
-nodePos_matrix1, ppp1, lam1, phi1 = extract_HK_data_normalized_Laplacian(G1)
-nodePos_matrix2, ppp2, lam2, phi2 = extract_HK_data_normalized_Laplacian(G2)
-
-HK1 = heat_kernel(lam1, phi1, t)
-HK2 = heat_kernel(lam2, phi2, t)
-
-# Find Optimal Couplings
-opt_coups = []
-losses = []
-
-start = time.time()
-
-for j in range(num_steps):
-    G0 = Markov_steps[j]
-    coup, log = gromov_wasserstein_asym_fixed_initialization(HK1, HK2, p1, p2, G0)
-    losses.append(log['gw_dist'])
-    opt_coups.append(coup)
-    
-end = time.time()
-fig = draw_geodesic_with_node_weights_fixed_coupling(nx.to_numpy_array(G1),nx.to_numpy_array(G2),
-                                               p1,p2,nodePos_matrix1,nodePos_matrix2,opt_coups[np.argmin(losses)])
-fig.suptitle('Cycle to circulant-HK10',fontsize=12)
-fig.savefig('res_cycle_circulant-HK10.pdf',bbox_inches='tight')
+fig.suptitle('Cycle to circulant-HK20',fontsize=12)
+fig.savefig('res_cycle_circulant-HK20.pdf',bbox_inches='tight')
 
 ## IMDB graphs
 graph_file = 'data/IMDB-BINARY_A.txt'
@@ -312,7 +310,7 @@ fig = draw_geodesic_with_node_weights_fixed_coupling(nx.to_numpy_array(G1),nx.to
 fig.suptitle('IMDB matching-Adj',fontsize=12)
 fig.savefig('res_IMDB_matching-Adj.pdf',bbox_inches='tight')
 
-t = 10
+t = 20
 
 nodePos_matrix1, ppp1, lam1, phi1 = extract_HK_data_normalized_Laplacian(G1)
 nodePos_matrix2, ppp2, lam2, phi2 = extract_HK_data_normalized_Laplacian(G2)
@@ -336,7 +334,7 @@ end = time.time()
 
 fig = draw_geodesic_with_node_weights_fixed_coupling(nx.to_numpy_array(G1),nx.to_numpy_array(G2),
                                                p1,p2,nodePos_matrix1,nodePos_matrix2,opt_coups[np.argmin(losses)])
-fig.suptitle('IMDB matching-HK10',fontsize=12)
-fig.savefig('res_IMDB_matching-HK10.pdf',bbox_inches='tight')
+fig.suptitle('IMDB matching-HK20',fontsize=12)
+fig.savefig('res_IMDB_matching-HK20.pdf',bbox_inches='tight')
 
 plt.show()

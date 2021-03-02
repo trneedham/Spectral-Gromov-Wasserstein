@@ -79,7 +79,7 @@ def get_gw_ami(G,t,gt):
     coup, log = ot.gromov.gromov_wasserstein(C1, C2, p1, p2, loss_fun = 'square_loss', log = True)
     est_idx = np.argmax(coup, axis=1)
     
-    ami = metrics.adjusted_mutual_info_score(est_idx,gt)
+    ami = metrics.adjusted_mutual_info_score(est_idx,gt,average_method='max')
     comms = [set() for v in np.unique(est_idx)]
     for idx,val in enumerate(est_idx):
         comms[val].add(idx)
